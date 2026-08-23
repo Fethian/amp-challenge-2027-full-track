@@ -1,0 +1,19 @@
+[project]
+name = "amp-challenge-2027"
+version = "1.0.0"
+description = "Deterministic public-data AMP Challenge Full-track candidate"
+readme = "README.md"
+authors = [{ name = "Fethian" }]
+
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "levenshtein>=0.27.3",
+    "numpy>=2.2.6",
+]
+
+[project.scripts]
+generate = "amp_challenge_2027.generate:main"
+
+[build-system]
+requires = ["uv_build>=0.12.3,<0.13.0"]
+build-backend = "uv_build"
