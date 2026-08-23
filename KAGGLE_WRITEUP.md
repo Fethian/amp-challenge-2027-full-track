@@ -238,6 +238,9 @@ testing remains the decisive next stage.
 
 ## 8. Reproducibility and files
 
+Public project repository:
+https://github.com/Fethian/amp-challenge-2027-full-track
+
 The repository includes the deterministic generation entry point, the frozen
 50,000 library and Top100, the 18 incumbent public activity models, the 18 public
 ESM2 linear heads, the public activity training table, the OmegAMP generative
