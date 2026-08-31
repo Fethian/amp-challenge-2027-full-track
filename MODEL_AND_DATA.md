@@ -26,18 +26,28 @@ lightweight frozen submission command does not load this checkpoint.
 Candidate selection used broad AMP activity and five target-species tasks. Each
 task was trained with three fixed identity-aware split seeds (17, 29, 43). The
 incumbent branch combines standardized class-balanced logistic regression with
-class-balanced histogram gradient boosting. The independent public challenger
+class-balanced histogram gradient boosting. The public ESM challenger
 uses a frozen `facebook/esm2_t12_35M_UR50D` residue representation and a
 class-balanced linear head. Both use calibration fitted only on tuning data.
 Final utilities use a fixed 50/50 fusion after candidate-population percentile
 normalization.
 
+The disclosed 322,267-row table contains 3,970 broad-task curated AMP fitting
+positives, 871 curated non-AMP fitting negatives, 7,188 UniProt-derived assumed
+negatives, 293,734 synthetic decoys, 16,498 non-fitting signal/metabolic
+controls, and 6 broad-label-conflict rows excluded from fitting. It is not a
+table of 322,267 experimentally measured AMPs. Species labels are task-specific:
+unlabelled source peptides remain unknown and are excluded from that species
+task; they are not converted to negatives. Exact-label conflicts are resolved
+within a task, not across species.
+
 `models/public_activity/` contains the 18 incumbent artifacts and
 `models/public_esm/` the 18 ESM2 heads. The disclosed fitting snapshot is
 `training_data/public_activity/public_activity_training_table.parquet`.
-`scripts/score_public_esm.py` is the readable heavy inference path; it requires
-PyTorch, Transformers, pandas, joblib and scikit-learn. The distributed heads
-were serialized with scikit-learn 1.6.1.
+`scripts/score_public_activity.py` and `scripts/score_public_esm.py` are the
+readable inference paths. Install their locked optional dependencies with
+`uv sync --frozen --extra activity` or `uv sync --frozen --extra esm`. The
+distributed heads were serialized with scikit-learn 1.6.1.
 
 ## Source-use matrix
 
@@ -51,6 +61,7 @@ were serialized with scikit-learn 1.6.1.
 | Signal and metabolic peptides | Locked negative controls only | Yes where present; never used for fitting |
 | Official antibacterial reference | Exact-overlap and Top100 similarity validation only | Yes, copied from the official repository |
 | HydrAMP starter | Frozen generator-family challenger; not promoted into G6 V5 | Not required by the final materialization path |
+| ARCADIAMP | Later fixed-scope capstone challenger; not part of the 117,957-row OmegAMP/HydrAMP pool and not promoted | No; source linked in the writeup |
 | DBAASP, GRAMPA and APD6 audit copies | External provenance, held-out testing, or novelty audits | Not copied wholesale into this repository |
 | Hidden challenge labels or private data | Not used | No |
 
@@ -59,9 +70,10 @@ provenance; it is not treated as a requirement to concatenate every named
 database. Bulk records with unresolved assay units, duplicate publications,
 chemistry, or redistribution terms were not silently added to training.
 
-The OmegAMP optional `secret_data` path was disabled. Signal and metabolic
-peptides were locked controls and never fitting rows. Restricted research models
-and hidden challenge labels were not used to select the Full Track release.
+Only publicly disclosed data were used. Signal and metabolic peptides were
+never fitting rows, although their metrics participated in model-promotion
+decisions. Hidden challenge labels were not used to select the Full Track
+release.
 
 ## Reproducibility boundary
 

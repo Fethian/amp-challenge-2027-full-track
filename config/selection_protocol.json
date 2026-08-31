@@ -1,0 +1,73 @@
+{
+  "release": "G6_V5",
+  "candidate_population": {
+    "rows": 117957,
+    "omegamp": 67957,
+    "hydramp": 50000,
+    "percentile_reference": "complete frozen 117957-row union"
+  },
+  "identity_clustering": {
+    "software": "MMseqs2",
+    "build": "17b688d21dda57fc5f5b7286ecba7ec003d4717f",
+    "command_parameters": [
+      "easy-cluster",
+      "--min-seq-id", "0.30",
+      "-c", "0.80",
+      "--cov-mode", "0",
+      "--cluster-mode", "2"
+    ]
+  },
+  "model_seeds": [17, 29, 43],
+  "evaluation_fusion": "0.5 * calibrated_composition_probability + 0.5 * calibrated_ESM_probability",
+  "candidate_ranking_fusion": "0.5 * empirical_percentile_over_pool(composition_probability) + 0.5 * empirical_percentile_over_pool(ESM_probability)",
+  "scenarios": {
+    "balanced": {
+      "broad_worst_seed_utility": 0.20,
+      "broad_mean_utility": 0.10,
+      "species_worst_utility": 0.25,
+      "species_mean_utility": 0.15,
+      "seed_stability_utility": 0.10,
+      "public_amp_descriptor_transport_utility": 0.10,
+      "public_training_identity30_novelty_utility": 0.10
+    },
+    "species_adversarial": {
+      "species_worst_utility": 0.45,
+      "species_mean_utility": 0.15,
+      "broad_worst_seed_utility": 0.10,
+      "seed_stability_utility": 0.10,
+      "public_amp_descriptor_transport_utility": 0.10,
+      "public_training_identity30_novelty_utility": 0.10
+    },
+    "broad_adversarial": {
+      "broad_worst_seed_utility": 0.40,
+      "broad_mean_utility": 0.20,
+      "species_worst_utility": 0.10,
+      "seed_stability_utility": 0.10,
+      "public_amp_descriptor_transport_utility": 0.10,
+      "public_training_identity30_novelty_utility": 0.10
+    },
+    "transport": {
+      "public_amp_descriptor_transport_utility": 0.30,
+      "sequence_complexity_utility": 0.20,
+      "public_training_identity30_novelty_utility": 0.20,
+      "broad_worst_seed_utility": 0.10,
+      "species_worst_utility": 0.10,
+      "seed_stability_utility": 0.10
+    }
+  },
+  "ranking_order": [
+    "descending minimum scenario utility",
+    "descending mean of two lowest scenario utilities",
+    "descending mean scenario utility",
+    "ascending stable sequence identifier"
+  ],
+  "random25": {
+    "subset_size": 25,
+    "original_generator_challenge_draws": 10000,
+    "aggregation": "for each draw, average each scenario over 25 distinct members, then take the minimum scenario mean"
+  },
+  "hydramp_promotion": {
+    "p10_delta_minimum": 0.0,
+    "mean_delta_minimum": 0.005
+  }
+}

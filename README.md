@@ -31,12 +31,30 @@ used for candidate generation are included under `vendor/omegamp/` and
 and their disclosed training table are under `models/` and
 `training_data/public_activity/`.
 
+For research-time inference, install the optional environment and score a FASTA:
+
+```bash
+uv sync --frozen --extra activity
+uv run python scripts/score_public_activity.py input.fasta activity_scores.csv
+uv sync --frozen --extra esm
+uv run python scripts/score_public_esm.py input.fasta esm_scores.csv
+```
+
 ## Documentation
 
 - `KAGGLE_WRITEUP.md`: submission article and experiment summary.
 - `MODEL_AND_DATA.md`: model, data, provenance, license, and claim boundaries.
 - `TOP100_SELECTION.md`: frozen ranking, constraints, and robustness procedure.
+- `config/selection_protocol.json`: public ranking formula, scenario weights,
+  clustering parameters, and Random-25 aggregation order.
+- `audit/v7_1_decision_summary.csv`: ARCADIAMP/OmegAMP capstone arms and five-gate decision.
 - `scripts/verify_submission.py`: official challenge repository validator.
+
+These files separate three reproducibility claims: `uv run generate` exports the
+frozen release; the model/data/config directories disclose the research lineage;
+and the audit/configuration files support the selection and closing decision.
+Byte-identical export alone is not presented as a from-scratch rerun of every
+GPU training and candidate-search step.
 
 To verify a public clone exactly as the organizers do:
 

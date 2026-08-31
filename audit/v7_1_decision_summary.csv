@@ -1,0 +1,8 @@
+arm,pool_origin,arcadiamp_percent,omegamp_percent,rows,exact_unique,identity30_clusters,reference_max_ratio,gate1_hard_constraints,gate2_phase1_no_degradation,gate3_broad_and_mdr_ci_positive,gate4_leave_one_family_out,gate5_no_double_red_increase,all_five_pass
+G6_V5_true,frozen_incumbent,0,100,100,100,100,0.7777777778,TRUE,NA,NA,NA,NA,incumbent
+matched_ARC000_OMEGA100,capstone_matched_pool,0,100,100,100,100,0.7777777778,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE
+matched_ARC025_OMEGA075,capstone_matched_pool,25,75,100,100,100,0.7777777778,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE
+matched_ARC050_OMEGA050,capstone_matched_pool,50,50,100,100,100,0.7777777778,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE
+matched_ARC055_OMEGA045,capstone_matched_pool,55,45,100,100,100,0.7777777778,TRUE,FALSE,TRUE,FALSE,FALSE,FALSE
+matched_ARC075_OMEGA025,capstone_matched_pool,75,25,100,100,100,0.7692307692,TRUE,FALSE,TRUE,FALSE,FALSE,FALSE
+matched_ARC100_OMEGA000,capstone_matched_pool,100,0,100,100,100,0.7058823529,TRUE,FALSE,TRUE,FALSE,FALSE,FALSE
