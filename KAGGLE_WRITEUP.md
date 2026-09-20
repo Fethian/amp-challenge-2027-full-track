@@ -98,8 +98,7 @@ only on the tuning partition. The features described length, net charge density,
 hydrophobic and aromatic fractions, residue composition, local half-sequence
 composition, entropy, and repeat behavior.
 
-To reduce sequence-family leakage, MMseqs2 build
-`17b688d21dda57fc5f5b7286ecba7ec003d4717f` clustered the union of training and
+To reduce sequence-family leakage, a pinned public MMseqs2 build clustered the union of training and
 candidate sequences with `easy-cluster --min-seq-id 0.30 -c 0.80 --cov-mode 0
 --cluster-mode 2`. Each seed assigned whole clusters, rather than individual
 rows, to 70% fitting, 15% tuning, and 15% evaluation partitions. Candidate
